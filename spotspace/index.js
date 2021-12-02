@@ -1,5 +1,5 @@
-const Space = require("./Space");
-const SpaceLedgerEntry = require("./SpaceLedgerEntry");
+import Space from "./Space";
+import SpaceLedgerEntry from "./SpaceLedgerEntry";
 
 const setModelConnection = function (aModel, connection) {
   aModel.connection = connection;

@@ -4,7 +4,24 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "APP_ENV=test node --async-stack-traces --harmony -r esm-wallaby --experimental-vm-modules node_modules/.bin/jest --forceExit"
+  },
+  "jest": {
+    "testEnvironment": "jest-environment-node",
+    "transform": {
+      "\\.m?jsx?$": "jest-esm-transformer"
+    },
+    "transformIgnorePatterns": [
+      "<rootDir>/node_modules/"
+    ],
+    "testPathIgnorePatterns": [
+      "<rootDir>/node_modules/"
+    ],
+    "globalTeardown": "./jest/teardown.js",
+    "globalSetup": "./jest/setup.js",
+    "setupFilesAfterEnv": [
+      "./jest/aroundTest.js"
+    ]
   },
   "repository": {
     "type": "git",
@@ -15,5 +32,30 @@
   "bugs": {
     "url": "https://github.com/spot-foundation/spotspace-js/issues"
   },
-  "homepage": "https://github.com/spot-foundation/spotspace-js#readme"
+  "homepage": "https://github.com/spot-foundation/spotspace-js#readme",
+  "devDependencies": {
+    "jest": "^27.3.1",
+    "jest-esm-transformer": "^1.0.0"
+  },
+  "dependencies": {
+    "esm-wallaby": "^3.2.25",
+    "isomorphic-fetch": "^3.0.0",
+    "isomorphic-form-data": "^2.0.0",
+    "object-to-formdata": "^4.2.2"
+  },
+  "engines": {
+    "node": "16",
+    "npm": ">= 6"
+  },
+  "esm": {
+    "cjs": {
+      "dedefault": true,
+      "topLevelReturn": true
+    },
+    "mainFields": [
+      "module",
+      "main"
+    ],
+    "mode": "auto"
+  }
 }
