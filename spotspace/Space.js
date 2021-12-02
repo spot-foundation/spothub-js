@@ -1,6 +1,6 @@
 import Model from './Model';
 export default class Space extends Model {
-  static attributes = {
+  static schema = {
     id: Symbol.for('text'),
     name: Symbol.for('text'),
     meta: Symbol.for('text'),

@@ -1,6 +1,6 @@
 import Model from "./Model";
 export default class SpaceLedgerEntry extends Model {
-  static attributes = {
+  static schema = {
     id: Symbol.for("text"),
     space_id: Symbol.for("text"),
     type: Symbol.for("text"),

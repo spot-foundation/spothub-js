@@ -5,24 +5,31 @@ import { serialize as asFormData } from "object-to-formdata";
 export default class Model {
   constructor({} = {}) {}
 
-  static attributes = {};
+  static schema = {};
 
   async save() {
     if (this.id) {
       return fetch(this.constructor.apiUrlFor(where.id), {
         method: "PUT",
-        body: asFormData(this.getAttributes()),
+        body: asFormData(this.attributes),
       });
     } else {
       return fetch(this.constructor.apiUrlFor(), {
         method: "POST",
-        body: asFormData(this.getAttributes()),
-      });
+        body: asFormData(this.attributes),
+      })
+        .then((response) => {
+          return response.json().then((json) => ({ response, json }));
+        })
+        .then(({ response, json }) => {
+          this.id = json.id;
+          return response;
+        });
     }
   }
 
-  getAttributes() {
-    const keys = Object.keys(this.attributes || {});
+  get attributes() {
+    const keys = Object.keys(this.constructor.schema || {});
     const c = {};
     for (const key of keys) {
       const v = this?.[key];
