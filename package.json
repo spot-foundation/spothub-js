@@ -34,8 +34,13 @@
   },
   "homepage": "https://github.com/spot-foundation/spotspace-js#readme",
   "devDependencies": {
+    "express": "^4.17.1",
+    "express-paths-as-routes": "^1.0.0",
+    "http": "^0.0.1-security",
     "jest": "^27.3.1",
-    "jest-esm-transformer": "^1.0.0"
+    "jest-esm-transformer": "^1.0.0",
+    "multer": "^1.4.3",
+    "test-listen": "^1.1.0"
   },
   "dependencies": {
     "esm-wallaby": "^3.2.25",

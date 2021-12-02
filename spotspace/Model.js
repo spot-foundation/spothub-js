@@ -14,17 +14,13 @@ export default class Model {
         body: asFormData(this.attributes),
       });
     } else {
-      return fetch(this.constructor.apiUrlFor(), {
+      const response = await fetch(this.constructor.apiUrlFor(), {
         method: "POST",
         body: asFormData(this.attributes),
-      })
-        .then((response) => {
-          return response.json().then((json) => ({ response, json }));
-        })
-        .then(({ response, json }) => {
-          this.id = json.id;
-          return response;
-        });
+      });
+      const json = await response.json();
+      this.id = json.id;
+      return response;
     }
   }
 
@@ -81,8 +77,8 @@ export default class Model {
   static get connection() {
     if (this._connection) {
       return this._connection;
-    } else if (globals.SPOTSPACE_CONNECTION) {
-      return globals.SPOTSPACE_CONNECTION;
+    } else if (globalThis.SPOTSPACE_CONNECTION) {
+      return globalThis.SPOTSPACE_CONNECTION;
     }
   }
 
@@ -99,6 +95,7 @@ export default class Model {
   }
 
   static apiUrlForPath(path) {
-    return `http://spot-dev.space:2000${path}`;
+    const url =`${this.connection?.prefixUrl}${path}`;
+    return url;
   }
 }

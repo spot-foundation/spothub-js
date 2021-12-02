@@ -7,7 +7,7 @@ const setModelConnection = function (aModel, connection) {
 };
 
 export default function spotspace(config) {
-  const connection = null; // TODO
+  const connection = config;
   const models = {
     Space: setModelConnection(Space, connection),
     SpaceLedgerEntry: setModelConnection(SpaceLedgerEntry, connection),
