@@ -1,5 +1,5 @@
-import Space from "./Space";
-import SpaceLedgerEntry from "./SpaceLedgerEntry";
+import Space from "../lib/Space";
+import SpaceLedgerEntry from "../lib/SpaceLedgerEntry";
 
 const setModelConnection = function (aModel, connection) {
   aModel.connection = connection;
