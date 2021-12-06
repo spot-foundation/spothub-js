@@ -1,9 +1,8 @@
 export default async function (req, res) {
-  let space = null;
-  space = globalThis.MockData.spaces[req.params.space_id];
+  let ledger = null;
   const where = req.query.where ? JSON.parse(req.query.where) : {};
   if (req.query.limit == 1) {
-    sle = space?.[where.id];
+    ledger = globalThis.MockData.ledgers[where.id];
   }
-  res.json({ ok: true, data: sle });
+  res.json({ ok: true, id: null, result: ledger });
 }

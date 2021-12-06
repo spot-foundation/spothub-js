@@ -6,18 +6,22 @@ import createMockApp from "../testlib/createMockApp";
 test("spotspace", async () => {
   const app = createMockApp();
   const app_server = http.createServer(app);
-  const prefixUrl = await listen(app_server);
+  const appUrl = await listen(app_server);
+  const access_token = `e2ab185e-bea3-472f-9bb4-f0bd67c928b2`;
+  const prefixUrl = `${appUrl}/access/${access_token}/rest/v1`;
   const ss = spotspace({ prefixUrl });
-  const { Space, SpaceLedgerEntry } = ss.models;
-  const space0 = Space.build({ name: "hello" });
-  await space0.save();
-  const space0found = await Space.findOne({ where: { id: space0.id } });
-  expect(space0found).not.toBe(null);
+  const { Ledger, LedgerEntry } = ss.models;
+  const ledger0 = Ledger.build({ name: "hello" });
+  await ledger0.save();
+  const ledger0found = await Ledger.findOne({ where: { id: ledger0.id } });
+  expect(ledger0found.id).toBe(ledger0.id);
+  expect(ledger0found.name).toBe(ledger0.name);
 
-  const sle0 = SpaceLedgerEntry.build({ space_id: space0.id });
-  await sle0.save();
-  const sle0found = await SpaceLedgerEntry.findOne({
-    where: { id: space0.id, space_id: space0.id },
+  const le0 = LedgerEntry.build({ ledger_id: ledger0.id });
+  await le0.save();
+  const le0found = await LedgerEntry.findOne({
+    where: { id: le0.id, ledger_id: ledger0.id },
   });
-  expect(sle0found).not.toBe(null);
+  expect(le0found.id).toBe(le0.id);
+  expect(le0found.ledger_id).toBe(ledger0.id);
 });

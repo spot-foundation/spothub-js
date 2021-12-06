@@ -5,5 +5,5 @@ export default async function (req, res) {
     id,
   };
   globalThis.MockData.spaces[id] = space;
-  return res.json({ ok: true, id, data: space });
+  return res.json({ ok: true, id, result: space });
 }

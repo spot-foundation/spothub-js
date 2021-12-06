@@ -4,5 +4,5 @@ export default async function (req, res) {
   if (req.query.limit == 1) {
     space = globalThis.MockData.spaces[where.id];
   }
-  res.json({ ok: true, data: space });
+  res.json({ ok: true, result: space });
 }

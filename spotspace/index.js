@@ -1,5 +1,6 @@
 import Space from "../lib/Space";
-import SpaceLedgerEntry from "../lib/SpaceLedgerEntry";
+import Ledger from "../lib/Ledger";
+import LedgerEntry from "../lib/LedgerEntry";
 
 const setModelConnection = function (aModel, connection) {
   aModel.connection = connection;
@@ -10,7 +11,8 @@ export default function spotspace(config) {
   const connection = config;
   const models = {
     Space: setModelConnection(Space, connection),
-    SpaceLedgerEntry: setModelConnection(SpaceLedgerEntry, connection),
+    Ledger: setModelConnection(Ledger, connection),
+    LedgerEntry: setModelConnection(LedgerEntry, connection),
   };
   return { connection, models };
 }
