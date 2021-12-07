@@ -3,6 +3,8 @@ export default async function (req, res) {
   const where = req.query.where ? JSON.parse(req.query.where) : {};
   if (req.query.limit == 1) {
     ledger = globalThis.MockData.ledgers[where.id];
+    return res.json({ ok: true, id: null, result: ledger });
+  } else {
+    // TODO
   }
-  res.json({ ok: true, id: null, result: ledger });
 }

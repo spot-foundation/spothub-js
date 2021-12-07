@@ -24,4 +24,12 @@ test("spotspace", async () => {
   });
   expect(le0found.id).toBe(le0.id);
   expect(le0found.ledger_id).toBe(ledger0.id);
+
+  const le1 = LedgerEntry.build({ ledger_id: ledger0.id });
+  await le1.save();
+
+  const l0_entries = await LedgerEntry.findAll({
+    where: { ledger_id: ledger0.id },
+  });
+  expect(l0_entries.length).toBe(2);
 });
