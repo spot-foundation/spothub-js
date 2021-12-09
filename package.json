@@ -1,5 +1,5 @@
 {
-  "name": "spotspace",
+  "name": "spothub",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -25,14 +25,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/spot-foundation/spotspace-js.git"
+    "url": "git+https://github.com/spot-foundation/spothub-js.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/spot-foundation/spotspace-js/issues"
+    "url": "https://github.com/spot-foundation/spothub-js/issues"
   },
-  "homepage": "https://github.com/spot-foundation/spotspace-js#readme",
+  "homepage": "https://github.com/spot-foundation/spothub-js#readme",
   "devDependencies": {
     "blakejs": "^1.1.1",
     "express": "^4.17.1",

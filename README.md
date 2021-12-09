@@ -1,1 +1,1 @@
-# spotspace-js
+# spothub-js

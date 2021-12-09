@@ -1,3 +1,3 @@
-const spotspace = require('./spotspace');
+const spothub = require('./spothub');
 
-module.exports = spotspace;
+module.exports = spothub;
