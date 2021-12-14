@@ -32,4 +32,14 @@ test("spothub", async () => {
     where: { ledger_id: ledger0.id },
   });
   expect(l0_entries.length).toBe(2);
+
+  const le3found = await LedgerEntry.findFirst({
+    where: { ledger_id: ledger0.id },
+  });
+  expect(le3found.id).toBe(le0found.id);
+
+  const le4found = await LedgerEntry.findLast({
+    where: { ledger_id: ledger0.id },
+  });
+  expect(le4found.id).toBe(le1.id);
 });

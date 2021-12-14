@@ -7,15 +7,22 @@ export default async function (req, res) {
   const les = globalThis.MockData.ledger_entries[req.params.ledger_id];
   // TODO
   const where = req.query.where;
+  let result = les;
   if (where) {
-    res.json({
-      ok: true,
-      id: null,
-      result: les.filter((i) => {
-        return matchesWhere(i, where);
-      }),
+    result = result.filter((i) => {
+      return matchesWhere(i, where);
     });
-  } else {
-    res.json({ ok: true, id: null, result: les });
   }
+  if (result.length && req.query.limit == 1) {
+    if (req.query.order == "desc") {
+      result = result[result.length - 1];
+    } else {
+      result = result[0];
+    }
+  }
+  res.json({
+    ok: true,
+    id: null,
+    result,
+  });
 }
