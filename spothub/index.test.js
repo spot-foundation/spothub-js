@@ -42,4 +42,30 @@ test("spothub", async () => {
     where: { ledger_id: ledger0.id },
   });
   expect(le4found.id).toBe(le1.id);
+
+  const le2 = LedgerEntry.build({ ledger_id: ledger0.id });
+  await le2.save();
+
+  const leBeforeFound = await LedgerEntry.findAll({
+    where: { ledger_id: ledger0.id },
+    before: le1.id
+  });
+  // TODO enable in mockapi
+  // expect(leBeforeFound.length).toBe(2);
+
+  const leAfterFound = await LedgerEntry.findAll({
+    where: { ledger_id: ledger0.id },
+    after: le0.id
+  });
+  // TODO enable in mockapi
+  // expect(leAfterFound.length).toBe(2);
+
+  const leBeforeAfterFound = await LedgerEntry.findAll({
+    where: { ledger_id: ledger0.id },
+    after: le0.id,
+    before: le2.id
+  });
+  // TODO enable in mockapi
+  // expect(leBeforeAfterFound.length).toBe(1);
+
 });
